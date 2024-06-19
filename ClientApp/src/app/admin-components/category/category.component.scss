@@ -1,0 +1,104 @@
+
+  .toggle-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .toggle-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .container {
+    display: flex;
+    transition: all 0.6s ease-in-out;
+    gap: 20px;
+  }
+  
+  .form-container {
+    flex: 0 0 30%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .table-container {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: all 0.6s ease-in-out;
+  }
+  
+  .table-container.full-width {
+    flex: 0 0 100%;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: flex-start;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .cancel-button {
+    background-color: #ff4c4c;
+  }
+  
+  .cancel-button:hover {
+    background-color: #d43f3f;
+  }
+  
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  .table-container th,
+  .table-container td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .table-container th {
+    background-color: #f4f4f4;
+  }
+  
+  .table-container tbody tr {
+    text-align: center;
+  }
+  
