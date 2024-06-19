@@ -35,12 +35,27 @@ namespace SohanKiranaStore.Repository.DBContect
                 .WithMany(s => s.ProductSizes)
                 .HasForeignKey(ps => ps.SizeId);
 
-            // Seed data
+            // Seed data for Categories
             modelBuilder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Beverages", Description = "Drinks and beverages" },
-                new Category { Id = 2, Name = "Snacks", Description = "Snacks and munchies" }
+                new Category
+                {
+                    Id = 1,
+                    Name = "Beverages",
+                    Description = "Drinks and beverages",
+                    CreatedBy = DateTime.UtcNow,
+                    UpdatedBy = DateTime.UtcNow
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "Snacks",
+                    Description = "Snacks and munchies",
+                    CreatedBy = DateTime.UtcNow,
+                    UpdatedBy = DateTime.UtcNow
+                }
             );
 
+            // Seed data for Sizes
             modelBuilder.Entity<Size>().HasData(
                 new Size { SizeId = 1, Description = "1 Liter" },
                 new Size { SizeId = 2, Description = "500 ml" },
@@ -49,31 +64,170 @@ namespace SohanKiranaStore.Repository.DBContect
                 new Size { SizeId = 5, Description = "500 grams" }
             );
 
+            // Seed data for Products
             modelBuilder.Entity<Product>().HasData(
-                new Product { ProductId = 1, Name = "Coca Cola", CategoryId = 1 },
-                new Product { ProductId = 2, Name = "Pepsi", CategoryId = 1 },
-                new Product { ProductId = 3, Name = "Lays Chips", CategoryId = 2 },
-                new Product { ProductId = 4, Name = "Doritos", CategoryId = 2 }
+                new Product
+                {
+                    ProductId = 1,
+                    Name = "Coca Cola",
+                    CategoryId = 1,
+                    CreatedBy = DateTime.UtcNow,
+                    UpdatedBy = DateTime.UtcNow
+                },
+                new Product
+                {
+                    ProductId = 2,
+                    Name = "Pepsi",
+                    CategoryId = 1,
+                    CreatedBy = DateTime.UtcNow,
+                    UpdatedBy = DateTime.UtcNow
+                },
+                new Product
+                {
+                    ProductId = 3,
+                    Name = "Lays Chips",
+                    CategoryId = 2,
+                    CreatedBy = DateTime.UtcNow,
+                    UpdatedBy = DateTime.UtcNow
+                },
+                new Product
+                {
+                    ProductId = 4,
+                    Name = "Doritos",
+                    CategoryId = 2,
+                    CreatedBy = DateTime.UtcNow,
+                    UpdatedBy = DateTime.UtcNow
+                }
             );
 
+            // Seed data for Descriptions
             modelBuilder.Entity<Description>().HasData(
-                new Description { DescriptionId = 1, ProductId = 1, ProductDescription = "Refreshing Coca Cola", Features = "Carbonated, Sweet", OtherProductInfo = "Best served chilled" },
-                new Description { DescriptionId = 2, ProductId = 2, ProductDescription = "Refreshing Pepsi", Features = "Carbonated, Sweet", OtherProductInfo = "Best served chilled" },
-                new Description { DescriptionId = 3, ProductId = 3, ProductDescription = "Crispy Lays Chips", Features = "Crunchy, Salty", OtherProductInfo = "Best enjoyed as a snack" },
-                new Description { DescriptionId = 4, ProductId = 4, ProductDescription = "Tasty Doritos", Features = "Crunchy, Flavorful", OtherProductInfo = "Perfect for parties" }
+                new Description
+                {
+                    DescriptionId = 1,
+                    ProductId = 1,
+                    ProductDescription = "Refreshing Coca Cola",
+                    Features = "Carbonated, Sweet",
+                    OtherProductInfo = "Best served chilled"
+                },
+                new Description
+                {
+                    DescriptionId = 2,
+                    ProductId = 2,
+                    ProductDescription = "Refreshing Pepsi",
+                    Features = "Carbonated, Sweet",
+                    OtherProductInfo = "Best served chilled"
+                },
+                new Description
+                {
+                    DescriptionId = 3,
+                    ProductId = 3,
+                    ProductDescription = "Crispy Lays Chips",
+                    Features = "Crunchy, Salty",
+                    OtherProductInfo = "Best enjoyed as a snack"
+                },
+                new Description
+                {
+                    DescriptionId = 4,
+                    ProductId = 4,
+                    ProductDescription = "Tasty Doritos",
+                    Features = "Crunchy, Flavorful",
+                    OtherProductInfo = "Perfect for parties"
+                }
             );
 
+            // Seed data for ProductSizes
             modelBuilder.Entity<ProductSize>().HasData(
-                new ProductSize { ProductId = 1, SizeId = 1, Price = 15.0M },
-                new ProductSize { ProductId = 1, SizeId = 2, Price = 10.0M },
-                new ProductSize { ProductId = 1, SizeId = 3, Price = 5.0M },
-                new ProductSize { ProductId = 2, SizeId = 1, Price = 15.0M },
-                new ProductSize { ProductId = 2, SizeId = 2, Price = 10.0M },
-                new ProductSize { ProductId = 2, SizeId = 3, Price = 5.0M },
-                new ProductSize { ProductId = 3, SizeId = 4, Price = 20.0M },
-                new ProductSize { ProductId = 3, SizeId = 5, Price = 10.0M },
-                new ProductSize { ProductId = 4, SizeId = 4, Price = 25.0M },
-                new ProductSize { ProductId = 4, SizeId = 5, Price = 12.5M }
+                new ProductSize
+                {
+                    ProductId = 1,
+                    SizeId = 1,
+                    Price = 15.0M,
+                    NetPrice = 15.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 1,
+                    SizeId = 2,
+                    Price = 10.0M,
+                    NetPrice = 10.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 1,
+                    SizeId = 3,
+                    Price = 5.0M,
+                    NetPrice = 5.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 2,
+                    SizeId = 1,
+                    Price = 15.0M,
+                    NetPrice = 15.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 2,
+                    SizeId = 2,
+                    Price = 10.0M,
+                    NetPrice = 10.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 2,
+                    SizeId = 3,
+                    Price = 5.0M,
+                    NetPrice = 5.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 3,
+                    SizeId = 4,
+                    Price = 20.0M,
+                    NetPrice = 20.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 3,
+                    SizeId = 5,
+                    Price = 10.0M,
+                    NetPrice = 10.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 4,
+                    SizeId = 4,
+                    Price = 25.0M,
+                    NetPrice = 25.0M,
+                    Discount = 0,
+                    Status = "Available"
+                },
+                new ProductSize
+                {
+                    ProductId = 4,
+                    SizeId = 5,
+                    Price = 12.5M,
+                    NetPrice = 12.5M,
+                    Discount = 0,
+                    Status = "Available"
+                }
             );
         }
     }

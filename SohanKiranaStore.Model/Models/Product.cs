@@ -10,18 +10,16 @@ namespace SohanKiranaStore.Model.Models
 
     {
         public int ProductId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        // Foreign key
         public int CategoryId { get; set; }
-        // Navigation property
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
-        // Navigation property for one-to-one relationship
-        public Description Description { get; set; }
+        public Description? Description { get; set; }
 
-        // Navigation property for many-to-many relationship
-        public ICollection<ProductSize> ProductSizes { get; set; }
+        public ICollection<ProductSize>? ProductSizes { get; set; }
+        public DateTime CreatedBy { get; set; }
+        public DateTime UpdatedBy { get; set; }
     }
 
 

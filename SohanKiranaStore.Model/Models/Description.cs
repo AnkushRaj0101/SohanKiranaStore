@@ -10,13 +10,10 @@ namespace SohanKiranaStore.Model.Models
     public class Description
     {
         public int DescriptionId { get; set; }
-        public string ProductDescription { get; set; }
-        public string Features { get; set; }
-        public string OtherProductInfo { get; set; }
-
-        // Foreign key
+        public string? ProductDescription { get; set; }
+        public string? Features { get; set; }
+        public string? OtherProductInfo { get; set; }
         public int ProductId { get; set; }
-        // Navigation property
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }

@@ -8,9 +8,10 @@ import { OrdersComponent } from './admin-components/orders/orders.component';
 import { CustomersListComponent } from './admin-components/customers-list/customers-list.component';
 import { ProductComponent } from './admin-components/product/product.component';
 import { CategoryComponent } from './admin-components/category/category.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'admin/dashboard', component: DashboardComponent},
   {path: 'admin/products', component: ProductComponent},
   {path: 'admin/statistics', component: StatisticsComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'admin/orders', component: OrdersComponent},
   {path: 'admin/list', component: CustomersListComponent},
   {path: 'admin/settings', component: SettingsComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'admin/list', component: SettingsComponent}
 
 

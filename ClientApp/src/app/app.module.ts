@@ -16,6 +16,13 @@ import { CategoryComponent } from './admin-components/category/category.componen
 import { ProductComponent } from './admin-components/product/product.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { TopHeaderComponent } from './Common/top-header/top-header.component';
+import { NavbarComponent } from './Common/navbar/navbar.component';
+import { FooterComponent } from './Common/footer/footer.component';
+import { TestimonialComponent } from './Common/testimonial/testimonial.component';
+import { WhySohanKiranaComponent } from './Common/why-sohan-kirana/why-sohan-kirana.component';
+import { CarouselComponent } from './Common/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +37,21 @@ import { HttpClientModule } from '@angular/common/http';
     OrdersComponent,
     CustomersListComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    HomeComponent,
+    TopHeaderComponent,
+    NavbarComponent,
+    FooterComponent,
+    TestimonialComponent,
+    WhySohanKiranaComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

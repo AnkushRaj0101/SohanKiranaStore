@@ -59,7 +59,7 @@ export class CategoryComponent implements OnInit {
   saveCategory(): void {
     if (this.selectedCategory) {
       this.categoryService.updateCategory(this.newCategory).subscribe(() => {
-        this.loadCategories(); // Refresh the category list
+        this.loadCategories();
         this.resetForm();
       });
     } else {

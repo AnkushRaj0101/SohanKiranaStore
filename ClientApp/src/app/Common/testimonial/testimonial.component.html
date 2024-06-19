@@ -1,0 +1,15 @@
+<section class="testimonial-section">
+    <h2>Customer Testimonials</h2><br>
+    <div class="testimonial-container">
+        <div class="testimonial-wrapper">
+            <div class="testimonial-box" *ngFor="let testimonial of displayedTestimonials; let i = index" [class.center]="i === 1">
+                <img [src]="testimonial.avatar" alt="Customer">
+                <h4>{{ testimonial.name }}</h4>
+                <p>{{ testimonial.review }}</p>
+            </div>
+        </div>
+        <button class="testimonial-arrow arrow-left" (click)="slide('left')"><i class="fas fa-chevron-left"></i></button>
+        <button class="testimonial-arrow arrow-right" (click)="slide('right')"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    
+</section>
