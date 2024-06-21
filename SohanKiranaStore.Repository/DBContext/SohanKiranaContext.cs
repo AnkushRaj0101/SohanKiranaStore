@@ -14,6 +14,7 @@ namespace SohanKiranaStore.Repository.DBContect
         public SohanKiranaContext(DbContextOptions<SohanKiranaContext> options) : base(options) { }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<CategoryImage> CategoryImages { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Description> Descriptions { get; set; }
 

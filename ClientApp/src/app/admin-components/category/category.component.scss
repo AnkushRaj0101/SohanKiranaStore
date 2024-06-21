@@ -19,7 +19,7 @@
   }
   
   .form-container {
-    flex: 0 0 30%;
+    flex: 0 0 50%;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -101,4 +101,15 @@
   .table-container tbody tr {
     text-align: center;
   }
-  
+  /* New styles for images */
+.table-container img {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: cover;
+}
+
+.form-container img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+}

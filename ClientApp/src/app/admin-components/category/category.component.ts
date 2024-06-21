@@ -23,9 +23,10 @@ import { CategoryService } from 'src/app/servcies/category.service';
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
   selectedCategory: Category | null = null;
-  newCategory: Category = { id: 0, name: '', description: '' };
+  newCategory: Category = { id: 0, name: '', description: '',imageData: new Blob() ,imageType:'' };
   showForm = false;
   formMode: 'add' | 'edit' | null = null;
+  selectedImage: File | null = null; 
 
   constructor(private categoryService: CategoryService) {}
 
@@ -41,7 +42,7 @@ export class CategoryComponent implements OnInit {
       this.formMode = action;
       if (action === 'add') {
         this.selectedCategory = null;
-        this.newCategory = { id: 0, name: '', description: '' };
+        this.newCategory = { id: 0, name: '', description: '',imageData: new Blob() ,imageType:''};
       } else if (action === 'edit' && category) {
         this.selectedCategory = category;
         this.newCategory = { ...category }; // Copy category to form
@@ -63,10 +64,13 @@ export class CategoryComponent implements OnInit {
         this.resetForm();
       });
     } else {
-      this.categoryService.addCategory(this.newCategory).subscribe((category) => {
-        this.categories.push(category);
-        this.resetForm();
-      });
+      if(this.imageFile){
+        this.categoryService.addCategory(this.newCategory,this.imageFile).subscribe((category) => {
+          this.categories.push(category);
+          this.resetForm();
+        });
+      }
+    
     }
   }
 
@@ -74,10 +78,29 @@ export class CategoryComponent implements OnInit {
     this.showForm = false;
     this.formMode = null;
     this.selectedCategory = null;
-    this.newCategory = { id: 0, name: '', description: '' };
+    this.newCategory = { id: 0, name: '', description: '',imageData: new Blob(),imageType:''  };
   }
 
   cancelForm(): void {
     this.resetForm();
+  }
+  imageFile: File | null = null;
+  onFileSelected(event: any): void {
+    if (event.target.files.length > 0) {
+      this.imageFile = event.target.files[0];
+    }
+    this.onFileSelectedtoshow(event)
+  }
+  imageSrc: string | ArrayBuffer | null = null;
+  onFileSelectedtoshow(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageSrc = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 }

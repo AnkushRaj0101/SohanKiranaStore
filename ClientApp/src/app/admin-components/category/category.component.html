@@ -1,48 +1,64 @@
 <h1>Category Page</h1>
 
-  <div class="container">
-    <div *ngIf="showForm" class="card form-container" [@slideInOut]>
-      <div class="card-head">{{ formMode === 'edit' ? 'Edit Category' : 'Add Category' }}</div>
-      <div class="card-body">
-        <form (ngSubmit)="saveCategory()">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" type="text" [(ngModel)]="newCategory.name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" [(ngModel)]="newCategory.description" name="description" required></textarea>
-          </div>
-          <button type="submit">{{ formMode === 'edit' ? 'Update Category' : 'Add Category' }}</button>&nbsp;
-          <button type="button" class="cancel-button" (click)="cancelForm()">Cancel</button>
-        </form>
-      </div>
+<div class="container">
+ 
+  <div class="card table-container" [ngClass]="{'full-width': !showForm}">
+    <div class="toggle-button-container">
+      <button (click)="toggleForm('add')" class="toggle-button">Add Category</button>
     </div>
-  
-    <div class="card table-container" [ngClass]="{'full-width': !showForm}">
-      <div class="toggle-button-container">
-        <button (click)="toggleForm('add')" class="toggle-button">Add Category</button>
-      </div>
-      <div class="card-body">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let category of categories">
-              <td>{{ category.name }}</td>
-              <td>{{ category.description }}</td>
-              <td>
-                <button (click)="toggleForm('edit', category)">Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="card-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Sno</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories,let i=index">
+            <td>{{i+1}}</td>
+            <td>
+              <img  [src]="'data:image/jpeg;base64,' + category.imageData" alt="{{category.name}}">
+            </td>
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+            <td>
+              <button (click)="toggleForm('edit', category)">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+  <div *ngIf="showForm" class="card form-container" [@slideInOut]>
+    <div class="card-head">{{ formMode === 'edit' ? 'Edit Category' : 'Add Category' }}</div>
+    <div class="card-body">
+      <form (ngSubmit)="saveCategory()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" type="text" [(ngModel)]="newCategory.name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" [(ngModel)]="newCategory.description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="imageUpload">Image:</label>
+          <input type="file" id="imageUpload" (change)="onFileSelected($event)" name="image">
+        </div>
+        <div *ngIf="formMode=='add'" >
+          <img [src]="imageSrc" alt="Uploaded Image">
+        </div>
+        <div *ngIf="formMode!='add'" >
+          <img [src]="'data:image/jpeg;base64,' + newCategory.imageData">
+        </div>
+        <button type="submit">{{ formMode === 'edit' ? 'Update Category' : 'Add Category' }}</button>&nbsp;
+        <button type="button" class="cancel-button" (click)="cancelForm()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+</div>

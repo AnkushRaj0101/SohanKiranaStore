@@ -20,3 +20,4 @@ D:\SohanKiranaStore\SohanKiranaStore.Model\obj\Debug\net6.0\SohanKiranaStore.Mod
 D:\SohanKiranaStore\SohanKiranaStore.Model\obj\Debug\net6.0\refint\SohanKiranaStore.Model.dll
 D:\SohanKiranaStore\SohanKiranaStore.Model\obj\Debug\net6.0\SohanKiranaStore.Model.pdb
 D:\SohanKiranaStore\SohanKiranaStore.Model\obj\Debug\net6.0\ref\SohanKiranaStore.Model.dll
+D:\SohanKiranaStore\SohanKiranaStore.Model\obj\Debug\net6.0\SohanKiranaStore.Model.csproj.AssemblyReference.cache

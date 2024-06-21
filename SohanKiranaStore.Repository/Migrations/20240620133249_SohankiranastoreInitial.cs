@@ -9,7 +9,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace SohanKiranaStore.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class SohanKiranaStoreInitial : Migration
+    public partial class SohankiranastoreInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,8 +23,8 @@ namespace SohanKiranaStore.Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false),
+                    Name = table.Column<string>(type: "longtext", nullable: true),
+                    Description = table.Column<string>(type: "longtext", nullable: true),
                     CreatedBy = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedBy = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
@@ -40,11 +40,33 @@ namespace SohanKiranaStore.Repository.Migrations
                 {
                     SizeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(type: "longtext", nullable: false)
+                    Description = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Size", x => x.SizeId);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "CategoryImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    ImageData = table.Column<byte[]>(type: "longblob", nullable: false),
+                    ImageType = table.Column<string>(type: "longtext", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoryImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CategoryImages_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -54,7 +76,7 @@ namespace SohanKiranaStore.Repository.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false),
+                    Name = table.Column<string>(type: "longtext", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedBy = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -77,9 +99,9 @@ namespace SohanKiranaStore.Repository.Migrations
                 {
                     DescriptionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    ProductDescription = table.Column<string>(type: "longtext", nullable: false),
-                    Features = table.Column<string>(type: "longtext", nullable: false),
-                    OtherProductInfo = table.Column<string>(type: "longtext", nullable: false),
+                    ProductDescription = table.Column<string>(type: "longtext", nullable: true),
+                    Features = table.Column<string>(type: "longtext", nullable: true),
+                    OtherProductInfo = table.Column<string>(type: "longtext", nullable: true),
                     ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -103,7 +125,7 @@ namespace SohanKiranaStore.Repository.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     NetPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Discount = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "longtext", nullable: false)
+                    Status = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -128,8 +150,8 @@ namespace SohanKiranaStore.Repository.Migrations
                 columns: new[] { "Id", "CreatedBy", "Description", "Name", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9715), "Drinks and beverages", "Beverages", new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9716) },
-                    { 2, new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9717), "Snacks and munchies", "Snacks", new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9718) }
+                    { 1, new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1034), "Drinks and beverages", "Beverages", new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1037) },
+                    { 2, new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1039), "Snacks and munchies", "Snacks", new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1039) }
                 });
 
             migrationBuilder.InsertData(
@@ -149,10 +171,10 @@ namespace SohanKiranaStore.Repository.Migrations
                 columns: new[] { "ProductId", "CategoryId", "CreatedBy", "Name", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9795), "Coca Cola", new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9795) },
-                    { 2, 1, new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9796), "Pepsi", new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9797) },
-                    { 3, 2, new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9797), "Lays Chips", new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9798) },
-                    { 4, 2, new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9798), "Doritos", new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9799) }
+                    { 1, 1, new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1133), "Coca Cola", new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1134) },
+                    { 2, 1, new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1135), "Pepsi", new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1135) },
+                    { 3, 2, new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1136), "Lays Chips", new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1136) },
+                    { 4, 2, new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1137), "Doritos", new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1137) }
                 });
 
             migrationBuilder.InsertData(
@@ -184,6 +206,12 @@ namespace SohanKiranaStore.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_CategoryImages_CategoryId",
+                table: "CategoryImages",
+                column: "CategoryId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Descriptions_ProductId",
                 table: "Descriptions",
                 column: "ProductId",
@@ -203,6 +231,9 @@ namespace SohanKiranaStore.Repository.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CategoryImages");
+
             migrationBuilder.DropTable(
                 name: "Descriptions");
 

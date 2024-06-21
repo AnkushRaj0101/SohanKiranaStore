@@ -29,11 +29,9 @@ namespace SohanKiranaStore.Repository.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedBy")
@@ -47,19 +45,44 @@ namespace SohanKiranaStore.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9715),
+                            CreatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1034),
                             Description = "Drinks and beverages",
                             Name = "Beverages",
-                            UpdatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9716)
+                            UpdatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1037)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9717),
+                            CreatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1039),
                             Description = "Snacks and munchies",
                             Name = "Snacks",
-                            UpdatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9718)
+                            UpdatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1039)
                         });
+                });
+
+            modelBuilder.Entity("SohanKiranaStore.Model.Models.CategoryImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("longblob");
+
+                    b.Property<string>("ImageType")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId")
+                        .IsUnique();
+
+                    b.ToTable("CategoryImages");
                 });
 
             modelBuilder.Entity("SohanKiranaStore.Model.Models.Description", b =>
@@ -69,15 +92,12 @@ namespace SohanKiranaStore.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Features")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("OtherProductInfo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProductDescription")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("ProductId")
@@ -138,7 +158,6 @@ namespace SohanKiranaStore.Repository.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedBy")
@@ -155,33 +174,33 @@ namespace SohanKiranaStore.Repository.Migrations
                         {
                             ProductId = 1,
                             CategoryId = 1,
-                            CreatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9795),
+                            CreatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1133),
                             Name = "Coca Cola",
-                            UpdatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9795)
+                            UpdatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1134)
                         },
                         new
                         {
                             ProductId = 2,
                             CategoryId = 1,
-                            CreatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9796),
+                            CreatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1135),
                             Name = "Pepsi",
-                            UpdatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9797)
+                            UpdatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1135)
                         },
                         new
                         {
                             ProductId = 3,
                             CategoryId = 2,
-                            CreatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9797),
+                            CreatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1136),
                             Name = "Lays Chips",
-                            UpdatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9798)
+                            UpdatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1136)
                         },
                         new
                         {
                             ProductId = 4,
                             CategoryId = 2,
-                            CreatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9798),
+                            CreatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1137),
                             Name = "Doritos",
-                            UpdatedBy = new DateTime(2024, 6, 19, 6, 26, 48, 368, DateTimeKind.Utc).AddTicks(9799)
+                            UpdatedBy = new DateTime(2024, 6, 20, 13, 32, 49, 846, DateTimeKind.Utc).AddTicks(1137)
                         });
                 });
 
@@ -203,7 +222,6 @@ namespace SohanKiranaStore.Repository.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("ProductId", "SizeId");
@@ -312,7 +330,6 @@ namespace SohanKiranaStore.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("SizeId");
@@ -345,6 +362,17 @@ namespace SohanKiranaStore.Repository.Migrations
                             SizeId = 5,
                             Description = "500 grams"
                         });
+                });
+
+            modelBuilder.Entity("SohanKiranaStore.Model.Models.CategoryImage", b =>
+                {
+                    b.HasOne("SohanKiranaStore.Model.Models.Category", "Category")
+                        .WithOne("CategoryImage")
+                        .HasForeignKey("SohanKiranaStore.Model.Models.CategoryImage", "CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("SohanKiranaStore.Model.Models.Description", b =>
@@ -390,13 +418,15 @@ namespace SohanKiranaStore.Repository.Migrations
 
             modelBuilder.Entity("SohanKiranaStore.Model.Models.Category", b =>
                 {
+                    b.Navigation("CategoryImage")
+                        .IsRequired();
+
                     b.Navigation("Products");
                 });
 
             modelBuilder.Entity("SohanKiranaStore.Model.Models.Product", b =>
                 {
-                    b.Navigation("Description")
-                        .IsRequired();
+                    b.Navigation("Description");
 
                     b.Navigation("ProductSizes");
                 });

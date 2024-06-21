@@ -14,7 +14,7 @@ namespace SohanKiranaStore.Core.Service
     {
         Task<IEnumerable<CategoryDto>> GetCategoriesAsync();
         Task<CategoryDto> GetCategoryAsync(int id);
-        Task<CategoryDto> CreateCategoryAsync(CategoryDto categoryDto);
+        Task<CategoryDto> CreateCategoryAsync(CategoryWithImageDto categoryDto);
         Task<CategoryDto> UpdateCategoryAsync(UpdateCategoryDto categoryDto);
     }
     public class CategoryService : ICategoryService
@@ -29,6 +29,7 @@ namespace SohanKiranaStore.Core.Service
         public async Task<IEnumerable<CategoryDto>> GetCategoriesAsync()
         {
             var categories = await _context.Categories
+                .Include(c => c.CategoryImage)
                 .Include(c => c.Products)
                     .ThenInclude(p => p.ProductSizes)
                         .ThenInclude(ps => ps.Size)
@@ -41,6 +42,8 @@ namespace SohanKiranaStore.Core.Service
                 Id = c.Id,
                 Name = c.Name,
                 Description = c.Description,
+                ImageData = c.CategoryImage?.ImageData,
+                ImageType = c.CategoryImage?.ImageType,
                 Products = c.Products.Select(p => new ProductDto
                 {
                     ProductId = p.ProductId,
@@ -59,12 +62,13 @@ namespace SohanKiranaStore.Core.Service
                         OtherProductInfo = p.Description.OtherProductInfo
                     }
                 }).ToList()
-            });
+            }).ToList();
         }
 
         public async Task<CategoryDto> GetCategoryAsync(int id)
         {
             var category = await _context.Categories
+                .Include(c => c.CategoryImage)
                 .Include(c => c.Products)
                     .ThenInclude(p => p.ProductSizes)
                         .ThenInclude(ps => ps.Size)
@@ -82,6 +86,8 @@ namespace SohanKiranaStore.Core.Service
                 Id = category.Id,
                 Name = category.Name,
                 Description = category.Description,
+                ImageData = category.CategoryImage?.ImageData,
+                ImageType = category.CategoryImage?.ImageType,
                 Products = category.Products.Select(p => new ProductDto
                 {
                     ProductId = p.ProductId,
@@ -102,22 +108,41 @@ namespace SohanKiranaStore.Core.Service
                 }).ToList()
             };
         }
-        public async Task<CategoryDto> CreateCategoryAsync(CategoryDto categoryDto)
+        public async Task<CategoryDto> CreateCategoryAsync(CategoryWithImageDto categoryDto)
         {
-            var newCategory = new Category
+            byte[] imageData = null;
+            using (var ms = new MemoryStream())
+            {
+                await categoryDto.Image.CopyToAsync(ms);
+                imageData = ms.ToArray();
+            }
+
+            var category = new Category
             {
                 Name = categoryDto.Name,
-                Description = categoryDto.Description
+                Description = categoryDto.Description,
+                CreatedBy = DateTime.Now,
+                UpdatedBy = DateTime.Now
             };
 
-            _context.Categories.Add(newCategory);
+            var categoryImage = new CategoryImage
+            {
+                ImageData = imageData,
+                ImageType = categoryDto.Image.ContentType,
+                Category = category
+            };
+
+            _context.Categories.Add(category);
+            _context.CategoryImages.Add(categoryImage);
             await _context.SaveChangesAsync();
 
             return new CategoryDto
             {
-                Id = newCategory.Id,
-                Name = newCategory.Name,
-                Description = newCategory.Description
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description,
+                ImageData = categoryImage.ImageData,
+                ImageType = categoryImage.ImageType
             };
         }
 

@@ -23,6 +23,8 @@ import { FooterComponent } from './Common/footer/footer.component';
 import { TestimonialComponent } from './Common/testimonial/testimonial.component';
 import { WhySohanKiranaComponent } from './Common/why-sohan-kirana/why-sohan-kirana.component';
 import { CarouselComponent } from './Common/carousel/carousel.component';
+import { AllCategoriesComponent } from './user-components/all-categories/all-categories.component';
+import { UserProductsComponent } from './user-components/user-products/user-products.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { CarouselComponent } from './Common/carousel/carousel.component';
     FooterComponent,
     TestimonialComponent,
     WhySohanKiranaComponent,
-    CarouselComponent
+    CarouselComponent,
+    AllCategoriesComponent,
+    UserProductsComponent
   ],
   imports: [
     BrowserModule,

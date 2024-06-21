@@ -14,10 +14,12 @@ namespace SohanKiranaStore.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
+        private readonly IWebHostEnvironment _env;
 
-        public CategoriesController(ICategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService,IWebHostEnvironment env)
         {
             _categoryService = categoryService;
+            _env = env;
         }
 
         // GET: api/Categories
@@ -55,13 +57,13 @@ namespace SohanKiranaStore.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<CategoryDto>> PostCategory(CategoryDto categoryDto)
+        public async Task<ActionResult<CategoryDto>> PostCategory([FromForm] CategoryWithImageDto categoryDto, IFormFile image)
         {
             try
             {
                 if (categoryDto == null)
                 {
-                    return BadRequest("Category object is null");
+                    return BadRequest("Unable to create category");
                 }
 
                 // Add the new category to the database
